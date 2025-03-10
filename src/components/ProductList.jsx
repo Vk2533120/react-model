@@ -9,9 +9,11 @@ const ProductList = ({ products, addToCart }) => {
           <img src={product.image} alt={product.title} style={styles.image} />
           <h3 style={styles.title}>{product.title}</h3>
           <p style={styles.price}>${product.price.toFixed(2)}</p>
-          <button style={styles.button} onClick={() => addToCart(product)}>
-            Add to Cart
-          </button>
+          <div style={styles.buttonContainer}>
+            <button style={styles.button} onClick={() => addToCart(product)}>
+              Add to Cart
+            </button>
+          </div>
         </div>
       ))}
     </div>
@@ -34,6 +36,9 @@ const styles = {
     maxWidth: '250px',
     textAlign: 'center',
     boxShadow: '0px 4px 6px rgba(0,0,0,0.1)',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between', // Ensures consistent spacing
   },
   image: {
     width: '100%',
@@ -43,11 +48,15 @@ const styles = {
   title: {
     fontSize: '1rem',
     marginBottom: '.5rem',
+    minHeight: '50px', // Ensures consistent height for titles
   },
   price: {
     fontSize: '.9rem',
     color: '#555',
     marginBottom: '.5rem',
+  },
+  buttonContainer: {
+    marginTop: 'auto', // Pushes the button to the bottom of the card
   },
   button: {
     backgroundColor: '#007BFF',
@@ -59,11 +68,6 @@ const styles = {
     fontSize: '.9rem',
     transition: 'all 0.3s ease-in-out',
   },
-};
-
-// Adding hover effects using inline styles
-styles.button['&hover'] = {
-  backgroundColor: '#0056b3', // Darker blue on hover
 };
 
 export default ProductList;
